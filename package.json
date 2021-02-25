@@ -22,7 +22,7 @@
 		"coverageDirectory": "<rootDir>/testResults/coverage",
 		"collectCoverage": true,
 		"collectCoverageFrom": [
-			"src/*.{js,ts}"
+			"src/**/*.{js,ts}"
 		],
 		"coverageReporters": [
 			"json",
@@ -48,7 +48,7 @@
 			[
 				"jest-html-reporters",
 				{
-					"publicPath": "./testResults/coverage",
+					"publicPath": "./testResults/reports",
 					"filename": "report.html",
 					"expand": true
 				}
