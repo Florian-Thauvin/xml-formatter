@@ -1,4 +1,4 @@
-import { getEndMark, getXmlMark, supressIndentation } from "../src/processing/xml-processing";
+import { getEndMark, getXmlMark, processMark, resetGlobalVar, supressIndentation } from "../src/processing/xml-processing";
 
 describe("Xml processing tests", () => {
     it('supressIndentation', () => {
@@ -18,5 +18,5 @@ describe("Xml processing tests", () => {
 
     it('getEndMark', () => {
         expect(getEndMark('titi')).toBe('</titi>');
-    })
+    });
 });

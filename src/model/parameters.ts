@@ -12,3 +12,4 @@ export const xmlCloseMarkChar: string = '</';
 
 export const xmlStartMarkRegExp: RegExp = /<[^/]/g;
 export const xmlEndLineRegExp: RegExp = /\r?\n/gm;
+export const xmlMarkInLineRegExp: RegExp = /></g;

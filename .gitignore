@@ -1,3 +1,4 @@
 /node_modules/*
 /package-lock.json
 /testResults/*
+/tests/resources/*/test_result.xml

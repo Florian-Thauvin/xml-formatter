@@ -4,12 +4,12 @@ import { processXmlFile } from "../src/xml-format";
 const path = require('path');
 const fs = require('fs');
 
-const EXAMPLES_PATHS = 'examples';
+const EXAMPLES_PATHS = 'tests/resources';
 
 export function compareProcessToExpected(exampleNumber: number): void {
     const xml = processXmlFile(getExamplePath(exampleNumber));
+    writeXml(path.resolve(EXAMPLES_PATHS, `formatting_${exampleNumber}`, 'test_result.xml'), xml);
     expect(xml).toStrictEqual(getExpectedXml(1));
-    //writeXml(path.resolve(EXAMPLES_PATHS, `formatting_${exampleNumber}`, 'titi.xml'), xml);
 }
 
 export function getExamplePath(exampleNumber: number): string{

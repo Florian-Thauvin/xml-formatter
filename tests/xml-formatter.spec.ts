@@ -15,11 +15,8 @@ describe("Xml formatters tests", () => {
     it("Simple file parsing, test 1", async () => {
         compareProcessToExpected(1);
     });
-    
-    /*it("test", async () => {
-        const a = path.resolve(getExamplePath(1));
-        console.log(a);
-        const b = await processXmlFile(a);
-        console.log(b);
-    });*/
+
+    it("File with multi mark in line parsing, test 2", async () => {
+        compareProcessToExpected(2);
+    });
 });
