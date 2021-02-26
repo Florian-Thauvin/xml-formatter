@@ -1,5 +1,5 @@
 import * as LOGGER from '../utils/logger';
-import { defaultParameters, spacesBetweenTwoCharRegExp, xmlCloseMarkChar, xmlCommentEndChar, xmlCommentStartChar, xmlEndLineRegExp, xmlEndMarkChar, xmlMarkInLineRegExp, xmlStartMarkChar, xmlStartMarkRegExp } from '../model/parameters';
+import { defaultParameters, possibleSplittingRegexp, spacesBetweenTwoCharRegExp, xmlCloseMarkChar, xmlCommentEndChar, xmlCommentStartChar, xmlEndLineRegExp, xmlEndMarkChar, xmlMarkInLineRegExp, xmlStartMarkChar, xmlStartMarkRegExp } from '../model/parameters';
 import { IXmlFormatting } from '../model/interfaces';
 
 let formattedLines: string[];
@@ -153,7 +153,46 @@ export function manageOneLineComment(line: string){
 }
 
 function addLine(line: string, optionnalSpacing: number = 0){
-    formattedLines.push(`${options.indentation.repeat(actualIndentation + tempIndentation + optionnalSpacing)}${line}`);
+    const indentation: string = options.indentation.repeat(actualIndentation + tempIndentation + optionnalSpacing);
+    if(indentation.length + line.length < options.maxLineLenght){
+        formattedLines.push(`${indentation}${line}`);
+    } else {
+        splitLine(line, indentation);
+    }
+}
+
+function splitLine(line: string, indentation: string){
+    const possibleSplittings = line.split(' ');
+
+     // The actual line width
+     let lineWidth = 0;
+     // The last index where we cut
+     let lastCut = 0;
+     for (let j = 0; j < possibleSplittings.length; j++) {
+         // We add the space (1) and the line width
+         const newLineWidth = lineWidth + 1 + possibleSplittings[j].length;
+
+         // If the line width is greater than the max
+         // We take care of the spacing
+         if (newLineWidth >= (options.maxLineLenght - indentation.length)) {
+             // We get the index of the previous string
+             const index = line.search(possibleSplittings[j - 1]) + possibleSplittings[j - 1].length;
+             // We get the string to add between last and actual cut
+             // We cut the index by 1 to delete space
+             const toAdd = line.slice(lastCut, index);
+             // The new with is the actual string length
+             lineWidth = possibleSplittings[j - 1].length + possibleSplittings[j].length;
+             formattedLines.push(`${indentation}${toAdd.trim()}`);
+
+             lastCut = index;
+         } else {
+             lineWidth = newLineWidth;
+         }
+     }
+
+     // We add the last string
+     formattedLines.push(`${indentation}${line.slice(lastCut).trim()}`);
+
 }
 
 function manageInLineMark(line: string, endMark: string){
