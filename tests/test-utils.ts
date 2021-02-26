@@ -9,7 +9,7 @@ const EXAMPLES_PATHS = 'tests/resources';
 export function compareProcessToExpected(exampleNumber: number): void {
     const xml = processXmlFile(getExamplePath(exampleNumber));
     writeXml(path.resolve(EXAMPLES_PATHS, `formatting_${exampleNumber}`, 'test_result.xml'), xml);
-    expect(xml).toStrictEqual(getExpectedXml(1));
+    expect(xml).toStrictEqual(getExpectedXml(exampleNumber));
 }
 
 export function getExamplePath(exampleNumber: number): string{

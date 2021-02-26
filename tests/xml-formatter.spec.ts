@@ -19,4 +19,8 @@ describe("Xml formatters tests", () => {
     it("File with multi mark in line parsing, test 2", async () => {
         compareProcessToExpected(2);
     });
+
+    it("File with comments and empty spaces, test 3", async () => {
+        compareProcessToExpected(3);
+    });
 });

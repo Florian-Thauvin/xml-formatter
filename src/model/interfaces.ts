@@ -1,5 +1,6 @@
 export interface IXmlFormatting{
     endLineChar?: string,
     indentation?: string,
-    maxLineLenght?: number
+    maxLineLenght?: number,
+    maxNumberOfBlankLines?: number
 }
