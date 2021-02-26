@@ -7,14 +7,20 @@
 	},
 	"description": "this is a custom formatter xml",
 	"license": "MIT",
-	"repository": {},
+	"repository": {
+		"type":"github",
+		"url":"https://github.com/Florian-Thauvin/xml-formatter"
+	},
 	"type": "module",
 	"private": false,
 	"scripts": {
+		"build": "tsc",
 		"test": "jest --silent",
 		"prettier": "npx prettier --write .",
 		"duplication": "npx jscpd ./src -c ./jscpd.json",
-		"complexity": "npx cognitive-complexity-ts-json ./src > complexity.json"
+		"complexity": "npx cognitive-complexity-ts-json ./src > complexity.json",
+		"complexity:ui": "npx cognitive-complexity-ts ./src",
+		"lint": "tslint --project tsconfig.json --format codeFrame"
 	},
 	"jest": {
 		"verbose": true,
@@ -67,6 +73,7 @@
 		"jscpd": "^3.3.22",
 		"jscpd-html-reporter": "^2.0.1",
 		"ts-jest": "26.4.4",
+	    "tslint": "^6.1.1",
 		"typescript": "^4.1.0-beta"
 	}
 }
