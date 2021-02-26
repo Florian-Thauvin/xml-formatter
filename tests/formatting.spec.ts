@@ -1,4 +1,4 @@
-import { getEndMark, getXmlMark, manageOneLineComment, processMark, resetGlobalVar, supressIndentation } from "../src/processing/xml-processing";
+import { getEndMark, getXmlMark, manageOneLineComment, processMark, replaceAllSpaces, resetGlobalVar, supressIndentation } from "../src/processing/xml-processing";
 
 describe("Xml processing tests", () => {
     it('supressIndentation', () => {

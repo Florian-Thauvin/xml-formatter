@@ -1,3 +1,4 @@
+import { IXmlFormatting } from "../src/model/interfaces";
 import { writeXml } from "../src/utils/file-utils";
 import { processXmlFile } from "../src/xml-format";
 
@@ -6,8 +7,8 @@ const fs = require('fs');
 
 const EXAMPLES_PATHS = 'tests/resources';
 
-export function compareProcessToExpected(exampleNumber: number): void {
-    const xml = processXmlFile(getExamplePath(exampleNumber));
+export function compareProcessToExpected(exampleNumber: number, options?: IXmlFormatting): void {
+    const xml = processXmlFile(getExamplePath(exampleNumber), options);
     writeXml(path.resolve(EXAMPLES_PATHS, `formatting_${exampleNumber}`, 'test_result.xml'), xml);
     expect(xml).toStrictEqual(getExpectedXml(exampleNumber));
 }

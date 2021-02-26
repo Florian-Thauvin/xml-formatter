@@ -1,5 +1,5 @@
 import * as LOGGER from '../utils/logger';
-import { defaultParameters, xmlCloseMarkChar, xmlCommentEndChar, xmlCommentStartChar, xmlEndLineRegExp, xmlEndMarkChar, xmlMarkInLineRegExp, xmlStartMarkChar, xmlStartMarkRegExp } from '../model/parameters';
+import { defaultParameters, spacesBetweenTwoCharRegExp, xmlCloseMarkChar, xmlCommentEndChar, xmlCommentStartChar, xmlEndLineRegExp, xmlEndMarkChar, xmlMarkInLineRegExp, xmlStartMarkChar, xmlStartMarkRegExp } from '../model/parameters';
 import { IXmlFormatting } from '../model/interfaces';
 
 let formattedLines: string[];
@@ -13,9 +13,9 @@ let isMultiLineComment: boolean;
 let numberOfBlankLines: number;
 let options: IXmlFormatting;
 
-export function processXmlString(rawXml: string, xmlOptions: IXmlFormatting = defaultParameters): string {
+export function processXmlString(rawXml: string, xmlOptions?: IXmlFormatting): string {
     resetGlobalVar();
-    options = xmlOptions;
+    options = {...defaultParameters, ...xmlOptions};
 
     const rawXmlByLines: string[] = rawXml.split(xmlEndLineRegExp);
 
@@ -39,7 +39,7 @@ export function processXmlString(rawXml: string, xmlOptions: IXmlFormatting = de
             // Comment
             if(processLine.includes(xmlCommentStartChar)){
                 // Simple
-                if(line.includes(xmlCommentEndChar)){
+                if(processLine.includes(xmlCommentEndChar)){
                     manageOneLineComment(processLine);
                 } else {
                     isMultiLineComment = true;
@@ -96,32 +96,38 @@ function removeLastMark(){
 }
 
 export function processMark(line: string) {
-    if (line.includes(xmlStartMarkChar)) {
-        const newMark: string = getXmlMark(line);
+    const processedLine: string = replaceAllSpaces(line);
+
+    if (processedLine.includes(xmlStartMarkChar)) {
+        const newMark: string = getXmlMark(processedLine);
 
         if(newMark !== ''){
             const endMark = getEndMark(newMark);
 
-            if (!line.includes(endMark)) {
+            if (!processedLine.includes(endMark)) {
                 xmlMarks.push(newMark);
                 actualIndentation++;
                 lastIndentationIndex++;
-                addLine(line);
+                addLine(processedLine);
             } else {
-                manageInLineMark(line, endMark);
+                manageInLineMark(processedLine, endMark);
             }
         } else {
             tempIndentation++;
-            addLine(line);
+            addLine(processedLine);
         }
     } else {
         tempIndentation += 2;
-        addLine(line);
+        addLine(processedLine);
     }
 }
 
 export function getEndMark(mark: string) {
     return `${xmlCloseMarkChar}${mark}>`;
+}
+
+export function replaceAllSpaces(line: string): string{
+    return line.replace(spacesBetweenTwoCharRegExp, ' '.repeat(options.maxNumberOfSpaces));
 }
 
 export function manageOneLineComment(line: string){
@@ -141,6 +147,8 @@ export function manageOneLineComment(line: string){
         if(isLineNotBlank(afterComment)) {
             processMark(afterComment);
         }
+    } else {
+        addLine(replaceAllSpaces(line), 1);
     }
 }
 
@@ -170,7 +178,7 @@ function manageInLineMark(line: string, endMark: string){
         tempIndentation = temp;
     } else {
         tempIndentation++;
-        addLine(line);
+        addLine(`${firstMark}${' '.repeat(options.spacesBetweenMarks)}${body.trim()}${' '.repeat(options.spacesBetweenMarks)}${lastMark}`);
         tempIndentation--;
     }
 }

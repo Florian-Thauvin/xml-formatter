@@ -20,7 +20,11 @@ describe("Xml formatters tests", () => {
         compareProcessToExpected(2);
     });
 
-    it("File with comments and empty spaces, test 3", async () => {
+    it("File with comments and empty lines, test 3", async () => {
         compareProcessToExpected(3);
+    });
+
+    it("File with empty spaces, test 4", async () => {
+        compareProcessToExpected(4, {spacesBetweenMarks: 1});
     });
 });

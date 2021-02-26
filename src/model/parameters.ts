@@ -4,7 +4,9 @@ export const defaultParameters: IXmlFormatting = {
     endLineChar: '\r\n',
     indentation: '  ',
     maxLineLenght: 72,
-    maxNumberOfBlankLines: 1
+    maxNumberOfBlankLines: 1,
+    spacesBetweenMarks: 0,
+    maxNumberOfSpaces: 1
 }
 
 export const xmlStartMarkChar: string = '<';
@@ -17,3 +19,4 @@ export const xmlCommentEndChar: string = '-->';;
 export const xmlStartMarkRegExp: RegExp = /<[^/!]/g;
 export const xmlEndLineRegExp: RegExp = /\r?\n/gm;
 export const xmlMarkInLineRegExp: RegExp = /></g;
+export const spacesBetweenTwoCharRegExp: RegExp = /\s\s+/g
