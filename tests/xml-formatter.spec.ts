@@ -1,12 +1,12 @@
-import { NOT_FOUND } from '../src/model/exceptions';
-import { readXml } from '../src/utils/file-utils';
-import { compareProcessToExpected, getExamplePath } from './test-utils';
-const path = require('path');
+import { NOT_FOUND, WRITING } from '../src/model/exceptions';
+import { readXml, writeXml } from '../src/utils/file-utils';
+import { compareProcessToExpected } from './test-utils';
 
 describe("Xml formatters tests", () => {
-    it("Wrong xml path, expect error", async () => {
+    it("Wrong xml path reading, expect error", async () => {
         try{
             readXml('non-valid-path');
+            fail();
         } catch(exception){
             expect(exception).toStrictEqual(new Error(NOT_FOUND));
         }
@@ -26,5 +26,14 @@ describe("Xml formatters tests", () => {
 
     it("File with empty spaces, test 4", async () => {
         compareProcessToExpected(4, {spacesBetweenMarks: 1});
+    });
+
+    it("Wrong xml path writing, expect error", async () => {
+        try{
+            writeXml('non-valid-path/non-valid-file', '');
+            fail();
+        } catch(exception){
+            expect(exception).toStrictEqual(new Error(WRITING));
+        }
     });
 });
