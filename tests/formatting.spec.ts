@@ -1,4 +1,11 @@
-import { getEndMark, getXmlMark, manageOneLineComment, processMark, replaceAllSpaces, resetGlobalVar, supressIndentation } from "../src/processing/xml-processing";
+/**
+ * Xml formatter
+ * 
+ * @author Florian Thauvin
+ * @license MIT
+ */
+
+import { getEndMark, getXmlMark, supressIndentation } from "../src/utils/string-utils";
 
 describe("Xml processing tests", () => {
     it('supressIndentation', () => {

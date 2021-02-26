@@ -1,4 +1,11 @@
-import { NOT_FOUND, WRITING } from '../src/model/exceptions';
+/**
+ * Xml formatter
+ * 
+ * @author Florian Thauvin
+ * @license MIT
+ */
+
+import { READING_EXCEPTION, WRITING_EXCEPTION } from '../src/model/exceptions';
 import { readXml, writeXml } from '../src/utils/file-utils';
 import { compareProcessToExpected } from './test-utils';
 
@@ -8,7 +15,7 @@ describe("Xml formatters tests", () => {
             readXml('non-valid-path');
             fail();
         } catch(exception){
-            expect(exception).toStrictEqual(new Error(NOT_FOUND));
+            expect(exception).toStrictEqual(new Error(READING_EXCEPTION));
         }
     });
 
@@ -33,7 +40,7 @@ describe("Xml formatters tests", () => {
             writeXml('non-valid-path/non-valid-file', '');
             fail();
         } catch(exception){
-            expect(exception).toStrictEqual(new Error(WRITING));
+            expect(exception).toStrictEqual(new Error(WRITING_EXCEPTION));
         }
     });
 });

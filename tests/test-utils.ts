@@ -1,3 +1,10 @@
+/**
+ * Xml formatter
+ * 
+ * @author Florian Thauvin
+ * @license MIT
+ */
+
 import { IXmlFormatting } from "../src/model/interfaces";
 import { writeXml } from "../src/utils/file-utils";
 import { processXmlFile } from "../src/xml-format";

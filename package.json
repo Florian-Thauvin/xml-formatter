@@ -6,7 +6,7 @@
 		"email": "florian.thauvin@orange.fr"
 	},
 	"description": "this is a custom formatter xml",
-	"license": "ADU",
+	"license": "MIT",
 	"repository": {},
 	"type": "module",
 	"private": false,
