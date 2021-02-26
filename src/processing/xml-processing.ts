@@ -5,8 +5,8 @@
  * @license MIT
  */
 
-import { defaultParameters, spacesBetweenTwoCharRegExp, xmlCloseMarkChar, xmlCommentEndChar, xmlCommentStartChar, xmlEndLineRegExp, xmlEndMarkChar, xmlMarkInLineRegExp, xmlStartMarkChar, xmlStartMarkRegExp } from '../model/parameters';
-import { IXmlFormatting } from '../model/interfaces';
+import { defaultParameters, spacesBetweenTwoCharRegExp, xmlCommentEndChar, xmlCommentStartChar, xmlEndLineRegExp, xmlEndMarkChar, xmlMarkInLineRegExp, xmlStartMarkChar, xmlStartMarkRegExp } from '../model/parameters';
+import { IInternalOptions, IXmlFormatting } from '../model/interfaces';
 import { getEndMark, getXmlMark, isLineNotBlank, supressIndentation } from '../utils/string-utils';
 
 /**
@@ -42,7 +42,7 @@ let numberOfBlankLines: number;
 /**
  * User formatting preferences
  */
-let options: IXmlFormatting;
+let options: IInternalOptions; 
 
 /**
  * Function used to process an xml file

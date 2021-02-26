@@ -1,11 +1,11 @@
-import { IXmlFormatting } from "./interfaces";
+import { IInternalOptions } from "./interfaces";
 
 /**
  * Default parameters used to format a xml
  * 
  * @implements IXmlFormatting
  */
-export const defaultParameters: IXmlFormatting = {
+export const defaultParameters: IInternalOptions = {
     endLineChar: '\r\n',
     indentation: '  ',
     maxLineLenght: 120,

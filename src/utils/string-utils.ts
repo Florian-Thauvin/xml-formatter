@@ -26,7 +26,7 @@ export function supressIndentation(line: string): string {
  * @returns true if the line is defined, with a size greater than 0 and with at least one non space char
  */
 export function isLineNotBlank(line: string): boolean {
-    return line && line.length > 0 && line.search(/\S/) !== -1;
+    return line !== undefined && line.length > 0 && line.search(/\S/) !== -1;
 }
 
 /**
