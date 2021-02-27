@@ -8,8 +8,8 @@
 import {
   xmlCloseMarkChar,
   xmlEndMarkChar,
-  xmlStartMarkRegExp,
-} from "../model/parameters";
+  xmlStartMarkRegExp
+} from '../model/parameters';
 
 /**
  * Function used to supress indentation before starting mark
@@ -53,7 +53,7 @@ export function getEndMark(mark: string): string {
  */
 export function getXmlMark(line: string): string {
   // Initialize retun value
-  let toReturn = "";
+  let toReturn = '';
   // We get the index of the start mark
   const startLineIndex = line.search(xmlStartMarkRegExp);
 
@@ -87,5 +87,6 @@ export function getXmlMark(line: string): string {
     // We extract the mark
     toReturn = line.slice(startLineIndex + 1, endMarkIndex);
   }
+
   return toReturn;
 }

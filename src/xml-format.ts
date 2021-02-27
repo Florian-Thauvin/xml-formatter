@@ -1,4 +1,3 @@
-import { readXml } from "./utils/file-utils";
 /**
  * Xml formatter
  *
@@ -6,8 +5,9 @@ import { readXml } from "./utils/file-utils";
  * @license MIT
  */
 
-import { processXmlString } from "./processing/xml-processing";
-import { IXmlFormatting } from "./model/interfaces";
+import { processXmlString } from './processing/xml-processing';
+import { IXmlFormatting } from './model/interfaces';
+import { readXml } from './utils/file-utils';
 
 /**
  * Function used to read and process a xml file
@@ -23,5 +23,6 @@ export function processXmlFile(
   options?: IXmlFormatting
 ): string {
   const rawXml = readXml(xmlPath);
+
   return processXmlString(rawXml, options);
 }

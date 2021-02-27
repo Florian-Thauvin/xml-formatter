@@ -2,21 +2,65 @@
   "extends": ["tslint:latest", "tslint:recommended"],
   "rules": {
     "max-line-length": {
-      "options": [120]
+      "options": [120],
+      "severity": "error"
     },
+    "member-ordering": true,
     "new-parens": true,
+    "no-any": true,
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,
-    "no-consecutive-blank-lines": false,
+    "no-consecutive-blank-lines": true,
     "no-console": {
       "severity": "warning",
       "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
-    }
+    },
+    "no-empty-interface": true,
+    "no-import-side-effect": true,
+    "no-magic-numbers": true,
+    "no-parameter-reassignment": true,
+    "promise-function-async": true,
+    "unified-signatures": true,
+    "await-promise": true,
+    "curly": true,
+    "no-duplicate-switch-case": true,
+    "no-duplicate-imports": true,
+    "no-duplicate-variable": true,
+    "no-empty": true,
+    "no-invalid-this": true,
+    "no-invalid-template-strings": true,
+    "no-shadowed-variable": true,
+    "no-unsafe-finally": true,
+    "strict-boolean-expressions": true,
+    "triple-equals": true,
+    "cyclomatic-complexity": true,
+    "deprecation": true,
+    "array-type": false,
+    "completed-docs": true,
+    "encoding": true,
+    "file-header": true,
+    "interface-name": true,
+    "one-variable-per-declaration": true,
+    "prefer-const": true,
+    "prefer-template": true,
+    "space-before-function-paren": false,
+    "switch-default": true,
+    "type-literal-delimiter": true,
+    "align": true,
+    "eofline": true,
+    "import-spacing": true,
+    "indent": true,
+    "jsdoc-format": true,
+    "newline-before-return": true,
+    "no-irregular-whitespace": true,
+    "number-literal-format": true,
+    "semicolon": true
   },
   "jsRules": {
     "max-line-length": {
       "options": [120]
     }
-  }
+  },
+  "defaultSeverity": "error"
 }

@@ -1,4 +1,11 @@
-import { IInternalOptions } from "./interfaces";
+/**
+ * Xml formatter
+ *
+ * @author Florian Thauvin
+ * @license MIT
+ */
+
+import { IInternalOptions } from './interfaces';
 
 /**
  * Default parameters used to format a xml
@@ -6,40 +13,40 @@ import { IInternalOptions } from "./interfaces";
  * @implements IXmlFormatting
  */
 export const defaultParameters: IInternalOptions = {
-  endLineChar: "\r\n",
-  indentation: "  ",
+  endLineChar: '\r\n',
+  indentation: '  ',
   maxLineLenght: 120,
   maxNumberOfBlankLines: 1,
   maxNumberOfSpaces: 1,
-  spacesBetweenMarks: 0,
+  spacesBetweenMarks: 0
 };
 
 /**
  * String definition of a start of a mark
  * @value <
  */
-export const xmlStartMarkChar: string = "<";
+export const xmlStartMarkChar: string = '<';
 /**
  * String definition for an end of a mark
  * @value >
  */
-export const xmlEndMarkChar: string = ">";
+export const xmlEndMarkChar: string = '>';
 /**
  * String definition for the start of an end mark
  * @value </
  */
-export const xmlCloseMarkChar: string = "</";
+export const xmlCloseMarkChar: string = '</';
 
 /**
  * String definition for the start of a comment
  * @value <!--
  */
-export const xmlCommentStartChar: string = "<!--";
+export const xmlCommentStartChar: string = '<!--';
 /**
  * String definition for the end of a comment
  * @value -->
  */
-export const xmlCommentEndChar: string = "-->";
+export const xmlCommentEndChar: string = '-->';
 
 /**
  * Regexp used to find the start of a mark. Excludes start of end marks.
@@ -61,3 +68,9 @@ export const xmlEndLineRegExp: RegExp = /\r?\n/gm;
  * @value /\s\s+/g
  */
 export const spacesBetweenTwoCharRegExp: RegExp = /\s\s+/g;
+
+/**
+ * Number used to space an inline body spacing when split is needed
+ * @value 2
+ */
+export const bodySpacing: number = 2;

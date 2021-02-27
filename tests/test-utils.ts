@@ -5,14 +5,14 @@
  * @license MIT
  */
 
-import { IXmlFormatting } from "../src/model/interfaces";
-import { writeXml } from "../src/utils/file-utils";
-import { processXmlFile } from "../src/xml-format";
+import { IXmlFormatting } from '../src/model/interfaces';
+import { writeXml } from '../src/utils/file-utils';
+import { processXmlFile } from '../src/xml-format';
 
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
 
-const EXAMPLES_PATHS = "tests/resources";
+const EXAMPLES_PATHS = 'tests/resources';
 
 export function compareProcessToExpected(
   exampleNumber: number,
@@ -23,7 +23,7 @@ export function compareProcessToExpected(
     path.resolve(
       EXAMPLES_PATHS,
       `formatting_${exampleNumber}`,
-      "test_result.xml"
+      'test_result.xml'
     ),
     xml
   );
@@ -34,7 +34,7 @@ export function getExamplePath(exampleNumber: number): string {
   return path.resolve(
     EXAMPLES_PATHS,
     `formatting_${exampleNumber}`,
-    "Input.xml"
+    'Input.xml'
   );
 }
 
@@ -42,7 +42,7 @@ export function getExpectedXml(exampleNumber: number): string {
   const expectedPath = path.resolve(
     EXAMPLES_PATHS,
     `formatting_${exampleNumber}`,
-    "Expected.xml"
+    'Expected.xml'
   );
-  return fs.readFileSync(expectedPath, "utf8");
+  return fs.readFileSync(expectedPath, 'utf8');
 }

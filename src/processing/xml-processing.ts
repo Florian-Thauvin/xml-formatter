@@ -6,6 +6,7 @@
  */
 
 import {
+  bodySpacing,
   defaultParameters,
   spacesBetweenTwoCharRegExp,
   xmlCommentEndChar,
@@ -14,20 +15,20 @@ import {
   xmlEndMarkChar,
   xmlMarkInLineRegExp,
   xmlStartMarkChar,
-  xmlStartMarkRegExp,
-} from "../model/parameters";
-import { IInternalOptions, IXmlFormatting } from "../model/interfaces";
+  xmlStartMarkRegExp
+} from '../model/parameters';
+import { IInternalOptions, IXmlFormatting } from '../model/interfaces';
 import {
   getEndMark,
   getXmlMark,
   isLineNotBlank,
-  supressIndentation,
-} from "../utils/string-utils";
+  supressIndentation
+} from '../utils/string-utils';
 
 /**
  * Buffer for formatted lines
  */
-let formattedLines: string[];
+let formattedLines: Array<string>;
 /**
  * The actual indentation
  */
@@ -35,7 +36,7 @@ let actualIndentation: number;
 /**
  * Buffer for all marks finded
  */
-let xmlMarks: string[];
+let xmlMarks: Array<string>;
 /**
  * The last mark index in the buffer
  */
@@ -77,7 +78,7 @@ export function processXmlString(
   options = { ...defaultParameters, ...xmlOptions };
 
   // We split the xml text by line
-  const rawXmlByLines: string[] = rawXml.split(xmlEndLineRegExp);
+  const rawXmlByLines: Array<string> = rawXml.split(xmlEndLineRegExp);
 
   // We check each xml line
   rawXmlByLines.forEach((line: string) => {
@@ -102,7 +103,7 @@ function processLine(line: string) {
     // If we can add this line
     if (numberOfBlankLines < options.maxNumberOfBlankLines) {
       // We have a blank line, just add a new line without spaces
-      formattedLines.push("");
+      formattedLines.push('');
       numberOfBlankLines++;
     }
   } else {
@@ -155,7 +156,7 @@ function processNonBlankLine(line: string) {
       // Check if we are in a multi line comment
       if (isMultiLineComment) {
         // If we are in a multi line, just add it
-        addLine(processedLine, 2);
+        addLine(processedLine, bodySpacing);
       } else {
         // We process the line as usal
         processMark(processedLine);
@@ -211,7 +212,7 @@ function processMark(line: string) {
     const newMark: string = getXmlMark(processedLine);
 
     // If we found one mark
-    if (newMark !== "") {
+    if (newMark !== '') {
       // We construct the end mark from the xml mark
       const endMark: string = getEndMark(newMark);
 
@@ -235,7 +236,7 @@ function processMark(line: string) {
     }
   } else {
     // Here we are in a special case: we are in a mark
-    tempIndentation += 2;
+    tempIndentation += bodySpacing;
     addLine(processedLine);
   }
 }
@@ -251,7 +252,7 @@ function replaceAllSpaces(line: string): string {
   // We replace all spaces between two char by the number of desired spaces
   return line.replace(
     spacesBetweenTwoCharRegExp,
-    " ".repeat(options.maxNumberOfSpaces)
+    ' '.repeat(options.maxNumberOfSpaces)
   );
 }
 
@@ -324,7 +325,7 @@ function addLine(line: string, optionnalSpacing: number = 0) {
  */
 function splitLine(line: string, indentation: string) {
   // Get all spaces where we can split
-  const possibleSplittings = line.split(" ");
+  const possibleSplittings = line.split(' ');
 
   // The actual line width
   let lineWidth = 0;
@@ -409,9 +410,9 @@ function manageInLineMark(line: string, endMark: string) {
     tempIndentation++;
     // We add the line with right format
     addLine(
-      `${firstMark}${" ".repeat(
+      `${firstMark}${' '.repeat(
         options.spacesBetweenMarks
-      )}${body.trim()}${" ".repeat(options.spacesBetweenMarks)}${lastMark}`
+      )}${body.trim()}${' '.repeat(options.spacesBetweenMarks)}${lastMark}`
     );
     // Decrement indentation
     tempIndentation--;

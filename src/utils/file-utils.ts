@@ -5,12 +5,13 @@
  * @license MIT
  */
 
-import { READING_EXCEPTION, WRITING_EXCEPTION } from "../model/exceptions";
+import { READING_EXCEPTION, WRITING_EXCEPTION } from '../model/exceptions';
 
 /**
  * Get file system to manage files
  */
-const fs = await import("fs");
+// tslint:disable-next-line
+const fs = require('fs');
 
 /**
  * Function used to read a xml
@@ -24,7 +25,7 @@ export function readXml(xmlPath: string): string {
   let rawXml: string;
 
   try {
-    rawXml = fs.readFileSync(xmlPath, "utf8");
+    rawXml = fs.readFileSync(xmlPath, 'utf8');
   } catch (exception) {
     console.error(`Error during reading file ${xmlPath}`, exception);
     throw new Error(READING_EXCEPTION);
@@ -43,7 +44,7 @@ export function readXml(xmlPath: string): string {
  */
 export function writeXml(xmlPath: string, content: string) {
   try {
-    fs.writeFileSync(xmlPath, content, "utf8");
+    fs.writeFileSync(xmlPath, content, 'utf8');
   } catch (exception) {
     console.error(`Error during writing file ${xmlPath}`, exception);
     throw new Error(WRITING_EXCEPTION);

@@ -12,42 +12,42 @@
  */
 export interface IXmlFormatting {
   /**
-   * @description separator used between each line for formatting
+   * Separator used between each line for formatting
    * @type string
    * @defaultValue \r\n
    */
   endLineChar?: string;
 
   /**
-   * @description string used to indent all xml lines
+   * String used to indent all xml lines
    * @type string
    * @defaultValue two spaces
    */
   indentation?: string;
 
   /**
-   * @description max lenght of a line
+   * Max lenght of a line
    * @type number
    * @defaultValue 120 char
    */
   maxLineLenght?: number;
 
   /**
-   * @description max number of blanks lines alloweds between two lines
+   * Max number of blanks lines alloweds between two lines
    * @type number
    * @defaultValue 1
    */
   maxNumberOfBlankLines?: number;
 
   /**
-   * @description max number of spaces between two char (doesn't affect indentation)
+   * Max number of spaces between two char (doesn't affect indentation)
    * @type number
    * @defaultValue 1
    */
   maxNumberOfSpaces?: number;
 
   /**
-   * @description space between a mark declaration and his body
+   * Space between a mark declaration and his body
    * @type number
    * @defaultValue 1
    */
@@ -60,42 +60,42 @@ export interface IXmlFormatting {
  */
 export interface IInternalOptions {
   /**
-   * @description separator used between each line for formatting
+   * Separator used between each line for formatting
    * @type string
    * @defaultValue \r\n
    */
   endLineChar: string;
 
   /**
-   * @description string used to indent all xml lines
+   * String used to indent all xml lines
    * @type string
    * @defaultValue two spaces
    */
   indentation: string;
 
   /**
-   * @description max lenght of a line
+   * Max lenght of a line
    * @type number
    * @defaultValue 120 char
    */
   maxLineLenght: number;
 
   /**
-   * @description max number of blanks lines alloweds between two lines
+   * Max number of blanks lines alloweds between two lines
    * @type number
    * @defaultValue 1
    */
   maxNumberOfBlankLines: number;
 
   /**
-   * @description max number of spaces between two char (doesn't affect indentation)
+   * Max number of spaces between two char (doesn't affect indentation)
    * @type number
    * @defaultValue 1
    */
   maxNumberOfSpaces: number;
 
   /**
-   * @description space between a mark declaration and his body
+   * Space between a mark declaration and his body
    * @type number
    * @defaultValue 1
    */
