@@ -71,7 +71,6 @@
   },
   "scripts": {
     "build": "rimraf build && tsc",
-    "publish": "copyfiles package.json build/ && npm publish",
     "clean": "npm run prettier & npm run lint & npx standard --fix & npm audit fix --dry-run & npm run test",
     "complexity": "mkdirp ./testResults && mkdirp ./testResults/complexity && npx cognitive-complexity-ts-json ./src > testResults/complexity/report.json",
     "complexity:ui": "npx cognitive-complexity-ts ./src",
@@ -79,6 +78,7 @@
     "duplication": "npx jscpd ./src -c ./jscpd.json",
     "lint": "tslint --project tsconfig.json --format codeFrame",
     "prettier": "npx prettier --write .",
+    "publish": "copyfiles package.json [readme.md] build/ && npm publish",
     "test": "jest --silent"
   },
   "type": "module",
