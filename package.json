@@ -3,7 +3,7 @@
     "email": "florian.thauvin@orange.fr",
     "name": "Florian Thauvin"
   },
-  "description": "this is a custom formatter xml",
+  "description": "This is a custom formatter xml",
   "devDependencies": {
     "@types/node": "^14.14.31",
     "cognitive-complexity-ts": "^0.1.6",
@@ -63,7 +63,7 @@
   },
   "license": "MIT",
   "main": "./dist/index",
-  "name": "xml-formatter",
+  "name": "@florian.thauvin/xml-formatter",
   "private": false,
   "repository": {
     "type": "github",
@@ -78,10 +78,10 @@
     "duplication": "npx jscpd ./src -c ./jscpd.json",
     "lint": "tslint --project tsconfig.json --format codeFrame",
     "prettier": "npx prettier --write .",
-    "publish": "copyfiles package.json [readme.md] build/ && npm publish",
+    "publish": "copyfiles package.json build/ && npm publish --access public",
     "test": "jest --silent"
   },
   "type": "module",
   "types": "./dist/index",
-  "version": "0.1.0"
+  "version": "1.0.0"
 }
