@@ -4,17 +4,16 @@
     "allowSyntheticDefaultImports": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
+    "lib": ["ES5", "ES6"],
+    "module": "AMD",
     "moduleResolution": "node",
-    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noStrictGenericChecks": true,
     "noUnusedLocals": true,
+    "outFile": "build/xmlFormatter.js",
     "plugins": [
       {
         "alwaysShowRuleFailuresAsWarnings": false,
@@ -33,7 +32,10 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es2017"
+    "removeComments": true,
+    "target": "es5",
+    "rootDirs": ["src/"]
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
