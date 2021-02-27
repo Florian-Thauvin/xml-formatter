@@ -1,40 +1,39 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": false,
     "allowSyntheticDefaultImports": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "allowJs": false,
-    "skipLibCheck": false,
-    "strict": true,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    "noStrictGenericChecks": true,
     "noUnusedLocals": true,
+    "plugins": [
+      {
+        "alwaysShowRuleFailuresAsWarnings": false,
+        "configFile": "./tslint.json",
+        "ignoreDefinitionFiles": false,
+        "jsEnable": true,
+        "name": "typescript-tslint-plugin",
+        "suppressWhileTypeErrorsPresent": false
+      }
+    ],
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "strict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "sourceMap": true,
-    "noStrictGenericChecks": true,
-
-    "plugins": [
-      {
-        "name": "typescript-tslint-plugin",
-        "jsEnable": true,
-        "alwaysShowRuleFailuresAsWarnings": false,
-        "ignoreDefinitionFiles": false,
-        "configFile": "./tslint.json",
-        "suppressWhileTypeErrorsPresent": false
-      }
-    ]
+    "target": "es2017"
   },
   "include": ["src"]
 }

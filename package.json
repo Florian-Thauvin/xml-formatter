@@ -1,73 +1,9 @@
 {
-  "name": "xml-formatter",
-  "version": "0.1.0",
   "author": {
-    "name": "Florian Thauvin",
-    "email": "florian.thauvin@orange.fr"
+    "email": "florian.thauvin@orange.fr",
+    "name": "Florian Thauvin"
   },
   "description": "this is a custom formatter xml",
-  "license": "MIT",
-  "repository": {
-    "type": "github",
-    "url": "https://github.com/Florian-Thauvin/xml-formatter"
-  },
-  "type": "module",
-  "private": false,
-  "scripts": {
-    "clean": "npm run prettier & npm run lint & npx standard --fix & npm audit fix --dry-run & npm run test",
-    "build": "tsc",
-    "deploy": "npm run clean && npm run duplication && npm run duplication && npm run build",
-    "test": "jest --silent",
-    "prettier": "npx prettier --write .",
-    "duplication": "npx jscpd ./src -c ./jscpd.json",
-    "complexity": "mkdirp ./testResults && mkdirp ./testResults/complexity && npx cognitive-complexity-ts-json ./src > testResults/complexity/report.json",
-    "complexity:ui": "npx cognitive-complexity-ts ./src",
-    "lint": "tslint --project tsconfig.json --format codeFrame"
-  },
-  "jest": {
-    "verbose": true,
-    "bail": false,
-    "coverageDirectory": "<rootDir>/testResults/coverage",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,ts}"
-    ],
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text-summary",
-      "clover"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 30,
-        "branches": 30,
-        "lines": 30,
-        "functions": 30
-      }
-    },
-    "errorOnDeprecated": true,
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|ts?)$",
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "reporters": [
-      "default",
-      [
-        "jest-html-reporters",
-        {
-          "publicPath": "./testResults/reports",
-          "filename": "report.html",
-          "expand": true
-        }
-      ]
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "ts",
-      "node"
-    ]
-  },
   "devDependencies": {
     "@types/node": "^14.14.31",
     "cognitive-complexity-ts": "^0.1.6",
@@ -79,5 +15,69 @@
     "ts-jest": "26.4.4",
     "tslint": "^6.1.1",
     "typescript": "^4.1.0-beta"
-  }
+  },
+  "jest": {
+    "bail": false,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,ts}"
+    ],
+    "coverageDirectory": "<rootDir>/testResults/coverage",
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text-summary",
+      "clover"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 30,
+        "functions": 30,
+        "lines": 30,
+        "statements": 30
+      }
+    },
+    "errorOnDeprecated": true,
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "node"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-html-reporters",
+        {
+          "expand": true,
+          "filename": "report.html",
+          "publicPath": "./testResults/reports"
+        }
+      ]
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|ts?)$",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "verbose": true
+  },
+  "license": "MIT",
+  "name": "xml-formatter",
+  "private": false,
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Florian-Thauvin/xml-formatter"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "npm run prettier & npm run lint & npx standard --fix & npm audit fix --dry-run & npm run test",
+    "complexity": "mkdirp ./testResults && mkdirp ./testResults/complexity && npx cognitive-complexity-ts-json ./src > testResults/complexity/report.json",
+    "complexity:ui": "npx cognitive-complexity-ts ./src",
+    "deploy": "npm run clean && npm run duplication && npm run duplication && npm run build",
+    "duplication": "npx jscpd ./src -c ./jscpd.json",
+    "lint": "tslint --project tsconfig.json --format codeFrame",
+    "prettier": "npx prettier --write .",
+    "test": "jest --silent"
+  },
+  "type": "module",
+  "version": "0.1.0"
 }
