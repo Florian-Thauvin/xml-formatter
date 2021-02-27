@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES5", "ES6"],
+    "module": "AMD",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noStrictGenericChecks": true,
+    "noUnusedLocals": true,
+    "outFile": "build/xmlFormatter.js",
+    "plugins": [
+      {
+        "alwaysShowRuleFailuresAsWarnings": false,
+        "configFile": "./tslint.json",
+        "ignoreDefinitionFiles": false,
+        "jsEnable": true,
+        "name": "typescript-tslint-plugin",
+        "suppressWhileTypeErrorsPresent": false
+      }
+    ],
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "rootDirs": ["src/"],
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "es5"
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
+}

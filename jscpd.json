@@ -1,0 +1,9 @@
+{
+  "max-lines": 5000,
+  "max-size": 5000,
+  "min-lines": 1,
+  "min-tokes": 1,
+  "output": "./testResults/duplication",
+  "reporters": ["html"],
+  "threshold": 5
+}
