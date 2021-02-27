@@ -119,18 +119,18 @@ function processNonBlankLine(line: string) {
   // Reset the number of blank lines
   numberOfBlankLines = 0;
   // We suppress the old indentation
-  let processLine = supressIndentation(line);
+  const processedLine = supressIndentation(line);
 
   // If it contains the last mark, ie it's a closing mark
-  if (processLine.includes(getEndMark(xmlMarks[lastMarkIndex]))) {
+  if (processedLine.includes(getEndMark(xmlMarks[lastMarkIndex]))) {
     removeLastMark();
   }
 
   // We check if it's a comment
-  if (processLine.includes(xmlCommentStartChar)) {
+  if (processedLine.includes(xmlCommentStartChar)) {
     // We have a starting and end comment mark: it's a comment inline
-    if (processLine.includes(xmlCommentEndChar)) {
-      manageOneLineComment(processLine);
+    if (processedLine.includes(xmlCommentEndChar)) {
+      manageOneLineComment(processedLine);
     } else {
       // We are in a multi line comment
       isMultiLineComment = true;
@@ -139,14 +139,14 @@ function processNonBlankLine(line: string) {
   } else {
     // We don't have a starting comment mark
     // We can have a end comment mark if we are in a multi line comment
-    if (processLine.includes(xmlCommentEndChar)) {
+    if (processedLine.includes(xmlCommentEndChar)) {
       // Reset the multi line comment
       isMultiLineComment = false;
       addLine(xmlCommentEndChar, 1);
 
       // We check if we have a mark / line to add
-      const lineWithoutEndComment = processLine.slice(
-        processLine.indexOf(xmlCommentEndChar) + xmlCommentEndChar.length
+      const lineWithoutEndComment = processedLine.slice(
+        processedLine.indexOf(xmlCommentEndChar) + xmlCommentEndChar.length
       );
       if (isLineNotBlank(lineWithoutEndComment)) {
         processMark(supressIndentation(lineWithoutEndComment));
@@ -155,10 +155,10 @@ function processNonBlankLine(line: string) {
       // Check if we are in a multi line comment
       if (isMultiLineComment) {
         // If we are in a multi line, just add it
-        addLine(processLine, 2);
+        addLine(processedLine, 2);
       } else {
         // We process the line as usal
-        processMark(processLine);
+        processMark(processedLine);
       }
     }
   }

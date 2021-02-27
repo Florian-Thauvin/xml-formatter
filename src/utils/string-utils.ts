@@ -58,7 +58,7 @@ export function getXmlMark(line: string): string {
   const startLineIndex = line.search(xmlStartMarkRegExp);
 
   // If we have a start index
-  if (startLineIndex != -1) {
+  if (startLineIndex !== -1) {
     // We get the first space AFTER start mark (line doesn't have indentation)
     const firstSpaceIndex: number = line.search(/\s/);
     // We get the first closing xml tag

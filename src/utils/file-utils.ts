@@ -10,7 +10,7 @@ import { READING_EXCEPTION, WRITING_EXCEPTION } from "../model/exceptions";
 /**
  * Get file system to manage files
  */
-const fs = require("fs");
+const fs = await import("fs");
 
 /**
  * Function used to read a xml
