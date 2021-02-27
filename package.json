@@ -7,6 +7,7 @@
   "devDependencies": {
     "@types/node": "^14.14.31",
     "cognitive-complexity-ts": "^0.1.6",
+    "copyfiles": "^2.4.1",
     "jest": "^26.6.3",
     "jest-html-reporters": "^2.1.0",
     "jscpd": "^3.3.22",
@@ -70,6 +71,7 @@
   },
   "scripts": {
     "build": "rimraf build && tsc",
+    "publish": "copyfiles package.json build/ && npm publish",
     "clean": "npm run prettier & npm run lint & npx standard --fix & npm audit fix --dry-run & npm run test",
     "complexity": "mkdirp ./testResults && mkdirp ./testResults/complexity && npx cognitive-complexity-ts-json ./src > testResults/complexity/report.json",
     "complexity:ui": "npx cognitive-complexity-ts ./src",
