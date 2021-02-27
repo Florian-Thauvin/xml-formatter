@@ -24,7 +24,9 @@
         "suppressWhileTypeErrorsPresent": false
       }
     ],
+    "removeComments": true,
     "resolveJsonModule": true,
+    "rootDirs": ["src/"],
     "skipLibCheck": false,
     "sourceMap": true,
     "strict": true,
@@ -32,10 +34,8 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "removeComments": true,
-    "target": "es5",
-    "rootDirs": ["src/"]
+    "target": "es5"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
 }

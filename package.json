@@ -61,6 +61,7 @@
     "verbose": true
   },
   "license": "MIT",
+  "main": "./dist/index",
   "name": "xml-formatter",
   "private": false,
   "repository": {
@@ -79,7 +80,6 @@
     "test": "jest --silent"
   },
   "type": "module",
-  "version": "0.1.0",
-  "main": "./dist/index",
-  "types": "./dist/index"
+  "types": "./dist/index",
+  "version": "0.1.0"
 }
