@@ -81,69 +81,87 @@ export function processXmlString(
 
   // We check each xml line
   rawXmlByLines.forEach((line: string) => {
-    // The indentation specific to this line
-    tempIndentation = 0;
-
-    // Check if the line is blank (only spaces) or not
-    if (!isLineNotBlank(line)) {
-      // If we can add this line
-      if (numberOfBlankLines < options.maxNumberOfBlankLines) {
-        // We have a blank line, just add a new line without spaces
-        formattedLines.push("");
-        numberOfBlankLines++;
-      }
-    } else {
-      // Reset the number of blank lines
-      numberOfBlankLines = 0;
-      // We suppress the old indentation
-      let processLine = supressIndentation(line);
-
-      // If it contains the last mark, ie it's a closing mark
-      if (processLine.includes(getEndMark(xmlMarks[lastMarkIndex]))) {
-        removeLastMark();
-      }
-
-      // We check if it's a comment
-      if (processLine.includes(xmlCommentStartChar)) {
-        // We have a starting and end comment mark: it's a comment inline
-        if (processLine.includes(xmlCommentEndChar)) {
-          manageOneLineComment(processLine);
-        } else {
-          // We are in a multi line comment
-          isMultiLineComment = true;
-          addLine(xmlCommentStartChar, 1);
-        }
-      } else {
-        // We don't have a starting comment mark
-        // We can have a end comment mark if we are in a multi line comment
-        if (processLine.includes(xmlCommentEndChar)) {
-          // Reset the multi line comment
-          isMultiLineComment = false;
-          addLine(xmlCommentEndChar, 1);
-
-          // We check if we have a mark / line to add
-          const lineWithoutEndComment = processLine.slice(
-            processLine.indexOf(xmlCommentEndChar) + xmlCommentEndChar.length
-          );
-          if (isLineNotBlank(lineWithoutEndComment)) {
-            processMark(supressIndentation(lineWithoutEndComment));
-          }
-        } else {
-          // Check if we are in a multi line comment
-          if (isMultiLineComment) {
-            // If we are in a multi line, just add it
-            addLine(processLine, 2);
-          } else {
-            // We process the line as usal
-            processMark(processLine);
-          }
-        }
-      }
-    }
+    processLine(line);
   });
 
   // We return all lines joined by an end line
   return formattedLines.join(options.endLineChar);
+}
+
+/**
+ * Function used to process a xml line
+ *
+ * @param line string to process
+ */
+function processLine(line: string) {
+  // The indentation specific to this line
+  tempIndentation = 0;
+
+  // Check if the line is blank (only spaces) or not
+  if (!isLineNotBlank(line)) {
+    // If we can add this line
+    if (numberOfBlankLines < options.maxNumberOfBlankLines) {
+      // We have a blank line, just add a new line without spaces
+      formattedLines.push("");
+      numberOfBlankLines++;
+    }
+  } else {
+    processNonBlankLine(line);
+  }
+}
+
+/**
+ * Function used to process a not blank line
+ *
+ * @param line string to process
+ */
+function processNonBlankLine(line: string) {
+  // Reset the number of blank lines
+  numberOfBlankLines = 0;
+  // We suppress the old indentation
+  let processLine = supressIndentation(line);
+
+  // If it contains the last mark, ie it's a closing mark
+  if (processLine.includes(getEndMark(xmlMarks[lastMarkIndex]))) {
+    removeLastMark();
+  }
+
+  // We check if it's a comment
+  if (processLine.includes(xmlCommentStartChar)) {
+    // We have a starting and end comment mark: it's a comment inline
+    if (processLine.includes(xmlCommentEndChar)) {
+      manageOneLineComment(processLine);
+    } else {
+      // We are in a multi line comment
+      isMultiLineComment = true;
+      addLine(xmlCommentStartChar, 1);
+    }
+  } else {
+    // We don't have a starting comment mark
+    // We can have a end comment mark if we are in a multi line comment
+    if (processLine.includes(xmlCommentEndChar)) {
+      // Reset the multi line comment
+      isMultiLineComment = false;
+      addLine(xmlCommentEndChar, 1);
+
+      // We check if we have a mark / line to add
+      const lineWithoutEndComment = processLine.slice(
+        processLine.indexOf(xmlCommentEndChar) + xmlCommentEndChar.length
+      );
+      if (isLineNotBlank(lineWithoutEndComment)) {
+        processMark(supressIndentation(lineWithoutEndComment));
+      }
+    } else {
+      // Check if we are in a multi line comment
+      if (isMultiLineComment) {
+        // If we are in a multi line, just add it
+        addLine(processLine, 2);
+      } else {
+        // We process the line as usal
+        processMark(processLine);
+      }
+    }
+  }
 }
 
 /**
